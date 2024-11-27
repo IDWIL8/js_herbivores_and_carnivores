@@ -22,7 +22,6 @@ class Herbivore extends Animal {
 class Carnivore extends Animal {
   constructor(name) {
     super(name);
-    this.name = name;
     Animal.alive.push(this);
   }
   bite(herbivore) {
@@ -30,11 +29,7 @@ class Carnivore extends Animal {
       herbivore.health -= 50;
     }
 
-    if (herbivore.health === 0) {
-      const a = Animal.alive.indexOf(herbivore);
-
-      Animal.alive.splice(a, 1);
-    }
+    Animal.alive = Animal.alive.filter((animal) => animal.health > 0);
   }
 }
 
